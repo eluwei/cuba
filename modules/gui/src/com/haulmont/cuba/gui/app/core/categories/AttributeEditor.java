@@ -493,7 +493,7 @@ public class AttributeEditor extends AbstractEditor<CategoryAttribute> {
     }
 
     protected void fillSelectEntityScreens(Class entityClass) {
-        Map<String, String> screensMap = screensHelper.getAvailableBrowserScreens(entityClass);
+        Map<String, String> screensMap = screensHelper.getAvailableBrowserScreens(entityClass, true);
         screenField.setOptionsMap(screensMap);
         String value = attribute.getScreen();
         screenField.setValue(screensMap.containsValue(value) ? value : null);
@@ -593,7 +593,7 @@ public class AttributeEditor extends AbstractEditor<CategoryAttribute> {
 
         MetaClass categorizedEntityMetaClass = metadata.getClass(attribute.getCategory().getEntityType());
         Map<String, String> optionsMap = categorizedEntityMetaClass != null ?
-                new HashMap<>(screensHelper.getAvailableScreens(categorizedEntityMetaClass.getJavaClass())) :
+                new HashMap<>(screensHelper.getAvailableScreens(categorizedEntityMetaClass.getJavaClass(), true)) :
                 new HashMap<>();
 
         targetScreensTable.addGeneratedColumn(
